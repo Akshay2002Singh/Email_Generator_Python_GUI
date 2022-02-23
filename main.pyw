@@ -12,7 +12,7 @@ import pandas as pd
 def create_sheet(list,file_name):
     update_status(f"Creating Excel file")
     dataFrame = pd.DataFrame(list)
-    dataFrame.to_excel(file_name,sheet_name='Sheet1')
+    dataFrame.to_excel(file_name,sheet_name='Sheet1',index = False,header=False)
 def clear_url_box():
     User.set("")
     NoOfStudent.set(0)
