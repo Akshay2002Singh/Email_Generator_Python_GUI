@@ -4,8 +4,15 @@ import threading
 import os
 from tkinter import *
 from time import sleep
+import pandas as pd
+
+# 2003012005@IPEC.ORG.IN
 
 # functions
+def create_sheet(list,file_name):
+    update_status(f"Creating Excel file")
+    dataFrame = pd.DataFrame(list)
+    dataFrame.to_excel(file_name,sheet_name='Sheet1')
 def clear_url_box():
     User.set("")
     NoOfStudent.set(0)
@@ -54,10 +61,11 @@ def createList():
         if check(temp_mail):
             t_noOfStudent= t_noOfStudent+1
             list.append(temp_mail)
+        update_status(f"Creating File ({t_noOfStudent} out of {no_of_student})")
         if t_noOfStudent == no_of_student:
             break
         
-    print(list)
+    create_sheet(list,f"{username}_{t_noOfStudent}.xlsx")
     download_btn.config(text="CREATE CSV",command=download)
     update_status("Ready to Download")
 
